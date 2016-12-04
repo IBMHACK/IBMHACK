@@ -1,7 +1,7 @@
 
 var ing = ["onions","garlic"];
 
-var fetch = function(ingr){
+var fetch = function(ingr, callback){
 	var uri = "http://www.recipepuppy.com/api/?i=";
 	
 	for (var i = 0; i < ingr.length; ++i){
@@ -25,8 +25,8 @@ var fetch = function(ingr){
 		var nodeNames = [];
 		var html = JSON.parse(data);
 		
-		debugger;
-		
+		if (callback) callback(html.results);
+
 	})
 	.fail( function(xhr, textStatus, errorThrown) {
 		alert(xhr.responseText);
